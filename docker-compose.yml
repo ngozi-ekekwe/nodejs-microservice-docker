@@ -1,0 +1,25 @@
+version: '2'
+
+services: 
+  mongo:
+    image: mongo:latest
+    restart: always
+    container_name: ms_mongo
+    ports:
+       - "27017:27017"
+
+  nginx:
+    build: ./nginx
+    container_name: ms_nginx
+    ports:
+      - "80:80"
+
+  store:
+    build: ./store
+    container_name: ms_store
+    command: "npm start"
+
+  users:
+    build: ./users
+    container_name: ms_users
+    command: "npm start"
